@@ -5,7 +5,7 @@ public class UniqueDigitsFilter<T extends Integer> implements Predicate<T>{
 	public boolean test(final T n) {
 		final int radix=10;
 		final int[] counts=new int[radix];
-		int remainder=n;
+		int remainder=Math.abs(n);
 		int digits=0;
 		do {
 			final int digit=remainder%radix;

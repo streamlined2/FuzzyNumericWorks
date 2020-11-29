@@ -84,6 +84,11 @@ public class Runner {
 		
 		System.out.printf("List of palindromes from input: %s%n", list.stream().filter(new Palindrome<Integer>()::test).collect(Collectors.toList()));
 		
+		System.out.printf("List of averages of adjacent values: %s%n", list.stream().collect(new AdjacentNumberAverageCollector<Integer>()));
+		
+		System.out.printf("Period of decimal fraction for first pair of positive adjacent numbers: %s%n", 
+				list.stream().filter(x->(x>0 && Math.round(x)==x)).limit(2).collect(new DecimalFractionPeriodCollector<Integer>()));
+		
 	}
 
 }
