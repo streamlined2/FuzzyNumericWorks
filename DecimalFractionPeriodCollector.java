@@ -37,7 +37,7 @@ public class DecimalFractionPeriodCollector<T extends Integer> implements Collec
 			if(source.size()<2) throw new RuntimeException("at least two numbers should be provided to compute decimal fraction period");
 			
 			List<T> digits=new LinkedList<T>();
-			List<T> remainders=new ArrayList(50);
+			List<T> remainders=new ArrayList<T>(50);
 
 			int dividend=source.get(0).intValue();
 			int divisor=source.get(1).intValue();
