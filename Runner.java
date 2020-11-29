@@ -82,6 +82,8 @@ public class Runner {
 		System.out.printf("Set of Fibonacci numbers up to %d: %s%n", UPPER_LIMIT,Mathematics.getFibonacciNumberList(BigInteger.valueOf(UPPER_LIMIT)));
 		System.out.printf("Set of Fibonacci numbers from input: %s%n", Mathematics.getFibonacciNumberList(list));
 		
+		System.out.printf("List of palindromes from input: %s%n", list.stream().filter(new Palindrome<Integer>()::test).collect(Collectors.toList()));
+		
 	}
 
 }
