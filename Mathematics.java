@@ -1,9 +1,13 @@
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 final class ArrayEntry <T extends Comparable<? super T>> {
 	private int index;
@@ -80,13 +84,56 @@ public final class Mathematics {
 		return max;
 	}
 	
+	/**
+	 * The method returns sorted set of lucky numbers according to article {@link https://en.wikipedia.org/wiki/Lucky_number}
+	 * 
+	 * @param <T> type of resulting numbers
+	 * @param lastOne last lucky number in result set would be less or equal to this parameter
+	 * @return list of lucky numbers up to lastOne parameter
+	 * 	 */
+	public final static <T extends Integer> SortedSet<T> getLuckyNumbers(final int lastOne){
+		if(lastOne<=0) throw new RuntimeException("at least one number should be included in lucky numbers sequence");
+		
+		final boolean[] sieve=new boolean[lastOne+1];//sieve for lucky numbers 
+		Arrays.fill(sieve, true);//consider all numbers initially
+		
+		int period=2;//every number distanced 'period' steps further should be struck off 
+		
+		do {
+			final int pace=period-1;
+			
+			for(int index=1;;) {//'index' refers to inspected number in sieve
+				for(int step=pace;index<=lastOne && step>0;index++) 
+						if(sieve[index]) step--;//skip next 'pace' marked numbers
+				
+				while(index<=lastOne && !sieve[index]) index++;//skip all numbers that were stricken out earlier 
+				
+				if(index<=lastOne) sieve[index++]=false;//strike out the number and move right to next position
+				else break;
+			}
+	
+			//find first still non-stricken number
+			do{ period++; } while(period<=lastOne && !sieve[period]);
+
+		}while(period<=lastOne);
+		
+		//compose result set
+		SortedSet<T> result=new TreeSet<T>();
+		for(int value=1;value<=lastOne;value++) {
+			if(sieve[value]) {
+				result.add((T) Integer.valueOf(value));
+			}
+		}
+		return result;
+	}
+	
 	public final static <T extends Integer> List<T> getPrimes(final int lastNumber){
 		if(lastNumber<=0) throw new RuntimeException("size parameter for getPrimes should be cardinal number");
 		
 		final int size=lastNumber+1;
 		boolean[] marks=new boolean[size];
 		//initialize sieve
-		for(int k=0;k<size;k++) marks[k]=false; //Arrays.setAll(marks, i->false);
+		for(int k=0;k<size;k++) marks[k]=false;
 		
 		int probe=2;
 		do{

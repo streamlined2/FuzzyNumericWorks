@@ -7,14 +7,16 @@ import java.util.stream.Collectors;
 
 public class Runner {
 	
-	private static final int count=10;
+	private static final int COUNT=10;
 	
+	private static final int UPPER_LIMIT = 120;
+
 	private static List<Integer> getList(){
 		Scanner scanner=new Scanner(System.in);
-		List<Integer> list=new ArrayList<>(count);
+		List<Integer> list=new ArrayList<>(COUNT);
 		
-		System.out.printf("Please enter %d integers: ",count);
-		for(int k=0;k<count;k++) {
+		System.out.printf("Please enter %d integers: ",COUNT);
+		for(int k=0;k<COUNT;k++) {
 			list.add(scanner.nextInt());
 		}
 		
@@ -63,7 +65,7 @@ public class Runner {
 					Mathematics.getGCD(list),
 					Mathematics.getLCM(list));
 	
-		System.out.printf("List of prime numbers up to %d: %s%n", 120, Mathematics.getPrimes(120));
+		System.out.printf("List of prime numbers up to %d: %s%n", UPPER_LIMIT, Mathematics.getPrimes(UPPER_LIMIT));
 		System.out.printf("You entered such prime numbers: %s%n", list.stream().collect(new PrimeNumbersCollector<Integer>()));
 		
 		System.out.printf("Sorted list in ascending order (selection sort algorithm): %s%n",list.stream().collect(new SelectionSortCollector<Integer>(Comparator.naturalOrder())));
@@ -72,8 +74,9 @@ public class Runner {
 		System.out.printf("Sorted list in ascending order (quick sort algorithm): %s%n",list.stream().collect(new QuickSortCollector<Integer>(Comparator.naturalOrder())));
 		System.out.printf("Sorted list in descending order (quick sort algorithm): %s%n",list.stream().collect(new QuickSortCollector<Integer>(Comparator.reverseOrder())));
 		
-		System.out.printf("Numbers ordered by frequency: %s", list.stream().collect(new FrequencyCollector<Integer>(Collections.reverseOrder())));
+		System.out.printf("Numbers ordered by frequency: %s%n", list.stream().collect(new FrequencyCollector<Integer>(Collections.reverseOrder())));
 		
+		System.out.printf("Set of lucky numbers up to %d: %s%n",UPPER_LIMIT,Mathematics.getLuckyNumbers(UPPER_LIMIT));
 	}
 
 }
