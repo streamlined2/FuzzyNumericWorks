@@ -89,6 +89,8 @@ public class Runner {
 		System.out.printf("Period of decimal fraction for first pair of positive adjacent numbers: %s%n", 
 				list.stream().filter(x->(x>0 && Math.round(x)==x)).limit(2).collect(new DecimalFractionPeriodCollector<Integer>()));
 		
+		System.out.printf("Pascal triangle for first positive number: %s", list.stream().filter(x->x>0).limit(1).collect(new PascalTriangleCollector()));
+		
 	}
 
 }
