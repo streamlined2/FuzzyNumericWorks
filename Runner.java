@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -67,6 +68,11 @@ public class Runner {
 		
 		System.out.printf("Sorted list in ascending order (selection sort algorithm): %s%n",list.stream().collect(new SelectionSortCollector<Integer>(Comparator.naturalOrder())));
 		System.out.printf("Sorted list in descending order (selection sort algorithm): %s%n",list.stream().collect(new SelectionSortCollector<Integer>(Comparator.reverseOrder())));
+		
+		System.out.printf("Sorted list in ascending order (quick sort algorithm): %s%n",list.stream().collect(new QuickSortCollector<Integer>(Comparator.naturalOrder())));
+		System.out.printf("Sorted list in descending order (quick sort algorithm): %s%n",list.stream().collect(new QuickSortCollector<Integer>(Comparator.reverseOrder())));
+		
+		System.out.printf("Numbers ordered by frequency: %s", list.stream().collect(new FrequencyCollector<Integer>(Collections.reverseOrder())));
 		
 	}
 

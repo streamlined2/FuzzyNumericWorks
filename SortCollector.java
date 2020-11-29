@@ -11,10 +11,14 @@ import java.util.stream.Collector;
 
 public abstract class SortCollector<T extends Comparable<? super T>> implements Sorter<List<T>,T>, Collector<T,List<T>,List<T>> {
 	
-	private Comparator<T> comparator;
+	private Comparator<? super T> comparator;
 	
-	public SortCollector() {
+	public SortCollector(final Comparator<? super T> comparator) {
 		this.comparator=comparator;
+	}
+	
+	public Comparator<? super T> getComparator(){
+		return comparator;
 	}
 
 	@Override
@@ -24,7 +28,7 @@ public abstract class SortCollector<T extends Comparable<? super T>> implements 
 
 	@Override
 	public BiConsumer<List<T>, T> accumulator() {
-		return List<T>::add;
+		return List<T>::add;//( list, item ) -> list.add(item);
 	}
 
 	@Override
@@ -34,7 +38,7 @@ public abstract class SortCollector<T extends Comparable<? super T>> implements 
 
 	@Override
 	public Function<List<T>, List<T>> finisher() {
-		return this::getSorted;
+		return this::getSorted; //( source ) -> { return sorted(source); };
 	}
 
 	@Override
