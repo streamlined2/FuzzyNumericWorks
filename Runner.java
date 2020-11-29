@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -77,6 +78,10 @@ public class Runner {
 		System.out.printf("Numbers ordered by frequency: %s%n", list.stream().collect(new FrequencyCollector<Integer>(Collections.reverseOrder())));
 		
 		System.out.printf("Set of lucky numbers up to %d: %s%n",UPPER_LIMIT,Mathematics.getLuckyNumbers(UPPER_LIMIT));
+		
+		System.out.printf("Set of Fibonacci numbers up to %d: %s%n", UPPER_LIMIT,Mathematics.getFibonacciNumberList(BigInteger.valueOf(UPPER_LIMIT)));
+		System.out.printf("Set of Fibonacci numbers from input: %s%n", Mathematics.getFibonacciNumberList(list));
+		
 	}
 
 }

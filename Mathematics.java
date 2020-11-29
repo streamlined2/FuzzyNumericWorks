@@ -127,6 +127,41 @@ public final class Mathematics {
 		return result;
 	}
 	
+	public final static <T extends Integer> List<T> getFibonacciNumberList(List<T> input){
+		List<BigInteger> fbNumbers=getFibonacciNumberList(BigInteger.valueOf(getMaximum(input)));
+		List<T> result=new LinkedList<T>();
+		for(T item:input) {
+			if(fbNumbers.contains(BigInteger.valueOf(item))) {
+				result.add(item);
+			}
+		}
+		return result;
+	}
+	
+	public final static List<BigInteger> getFibonacciNumberList(final BigInteger upperLimit) {
+		final List<BigInteger> list=new LinkedList<BigInteger>();
+		if(upperLimit.compareTo(BigInteger.ZERO)>=0) {
+			BigInteger first=BigInteger.ZERO;
+			list.add(first);
+			if(upperLimit.compareTo(BigInteger.ONE)>=0) {
+				BigInteger second=BigInteger.ONE;
+				list.add(second);
+				if(upperLimit.compareTo(BigInteger.TWO)>=0) {
+					BigInteger next;
+					do{
+						next=first.add(second);
+						if(next.compareTo(upperLimit)<=0) {
+							list.add(next);//add new value to resulting list and
+							first=second;//save values for next iteration
+							second=next;					
+						}else break;
+					}while(true);
+				}
+			}
+		}else throw new RuntimeException("negative upperLimit parameter is inappropriate");
+		return list;
+	}
+	
 	public final static <T extends Integer> List<T> getPrimes(final int lastNumber){
 		if(lastNumber<=0) throw new RuntimeException("size parameter for getPrimes should be cardinal number");
 		
