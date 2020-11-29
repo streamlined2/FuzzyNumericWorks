@@ -1,13 +1,12 @@
 # FuzzyNumericWorks
-An assortment of basic algorithms implemented in Java
+An assortment of basic algorithms implemented as Java stream collectors and predicates
 
-quicksort, bubblesort, insertion & selection sort
-Pascal triangle
-set of prime numbers
-set of lucky numbers
-decimal fraction period
-palindrome number
-set of Fibonacci numbers
-GCD and LCM
-input stream number frequency collector
-implementations of java streams collectors, filters
+1. Quicksort, Bubblesort, Insertion & Selection sort
+2. Pascal triangle
+3. Set of prime numbers
+4. Set of lucky numbers
+5. Decimal fraction period
+6. Palindrome number
+7. Set of Fibonacci numbers
+8. GCD and LCM
+9. Input stream number frequency collector
